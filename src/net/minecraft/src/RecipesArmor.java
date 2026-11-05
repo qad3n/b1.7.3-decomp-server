@@ -1,0 +1,18 @@
+package net.minecraft.src;
+
+
+public class RecipesArmor {
+    private String[][] recipePatterns = new String[][]{{"XXX", "X X"}, {"X X", "XXX", "XXX"}, {"XXX", "X X", "X X"}, {"X X", "X X"}};
+    private Object[][] recipeItems = new Object[][]{{Item.leather, Block.fire, Item.ingotIron, Item.diamond, Item.ingotGold}, {Item.helmetLeather, Item.helmetChain, Item.helmetSteel, Item.helmetDiamond, Item.helmetGold}, {Item.plateLeather, Item.plateChain, Item.plateSteel, Item.plateDiamond, Item.plateGold}, {Item.legsLeather, Item.legsChain, Item.legsSteel, Item.legsDiamond, Item.legsGold}, {Item.bootsLeather, Item.bootsChain, Item.bootsSteel, Item.bootsDiamond, Item.bootsGold}};
+
+    public void addRecipes(CraftingManager manager) {
+        for (int i = 0; i < this.recipeItems[0].length; ++i) {
+            Object object = this.recipeItems[0][i];
+            for (int j = 0; j < this.recipeItems.length - 1; ++j) {
+                Item item = (Item)this.recipeItems[j + 1][i];
+                manager.addRecipe(new ItemStack(item), this.recipePatterns[j], Character.valueOf('X'), object);
+            }
+        }
+    }
+}
+
